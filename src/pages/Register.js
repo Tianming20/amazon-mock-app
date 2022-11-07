@@ -1,0 +1,154 @@
+import styled from "styled-components";
+import LogoDevIcon from '@mui/icons-material/LogoDev';
+import { useNavigate } from "react-router-dom";
+import {useState, useContext} from 'react';
+import { UserContext } from "../context/UserContext";
+
+const Container = styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+`;
+
+const Wrapper = styled.div`
+    width: 25%;
+    padding: 20px;
+    border: 0.5px #DCDCDC solid;
+    border-radius: 12px;
+`;
+
+const IconContainer = styled.div`
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+`
+
+const ErrMsg = styled.p`
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    display: ${props=>!props.show&&"hidden"}
+`
+
+const Title = styled.h2`
+    font-size: ${props=>props.name==="signup" ? "40px" : "20px"};
+    color: ${props=>props.name==="signup" ? "black" : "#696969"};
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+`;
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+`;
+
+const Label = styled.label`
+    font-size: 24px;
+    font-weight: 400;
+`
+
+const Input = styled.input`
+    padding: 10px;
+    color: #D3D3D3;
+    width: 80%;
+`;
+
+const Agreement = styled.span`
+    font-size: 12px;
+    margin: 20px 0px;
+    display: flex;
+    justify-content: center;
+` 
+
+const Button = styled.button`
+    margin-top: 20px;
+    background-color: ${props=>props.name==="signup" ? "#DAA502" : "#D3D3D3"};
+    border: 1px black solid;
+    border-radius: 4px;
+    color: black;
+    cursor: pointer;
+    width: ${props=>props.name==="signup" ? "85%" : "500px"};
+    height: 50px;
+`;
+
+const Bottom = styled.div`
+    width: 30%
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+function Register() {
+
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [err, setErr] = useState("");
+    const {userInfo, setUserInfo, isAuth, setIsAuth} = useContext(UserContext);
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+        if(email.length===0){
+            setErr("Email can't be empty!")
+            return
+        } else if(password.length===0){
+                setErr("Password can't be empty!")
+                return
+        } else {
+                setUserInfo([...userInfo,{id:userInfo.length+1,email, password}])
+                setEmail("");
+                setPassword("");
+                navigate("/login");
+                
+        }
+    }
+
+  return (
+    <>
+        <Container>
+            <IconContainer>
+                <LogoDevIcon color="secondary" fontSize="large" />
+            </IconContainer>
+            <Wrapper>
+                <ErrMsg show={err?"show":"hidden"}>{err}</ErrMsg>
+                <Title name="signup">Create account</Title>
+                <Form onSubmit={handleSubmit}>
+                    <Label htmlFor="email">
+                        Enter your Email Address
+                    </Label>
+                    <Input type="email" id="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                    <Label htmlFor="password">
+                        Enter your Password
+                    </Label>
+                    <Input type="text" id="password" value={password} onChange={(e)=>{setPassword(e.target.value);}}/>
+                    <Button name="signup" type="submit">Sign Up</Button>
+                </Form>
+                <Agreement>
+                    By creating an account, you agree to Website's Conditions of Use and Privacy Notice.
+                </Agreement>
+            </Wrapper>
+            <Bottom>
+                <Title>
+                     Already have an account?
+                </Title>
+                <Button  onClick={()=>navigate("/login")}>Sign In</Button>
+            </Bottom>
+        </Container>
+        
+    </>
+  )
+}
+
+export default Register
