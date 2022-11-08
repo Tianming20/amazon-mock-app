@@ -18,7 +18,7 @@ const Container = styled.div`
 
 export default function Products() {
 
-  const {category, setCategory} = useContext(CategoryContext);
+  const {category} = useContext(CategoryContext);
   const [list, setList] = useState(popularProducts);
   const {cart, setCart} = useContext(CartContext);
 
@@ -42,5 +42,6 @@ export default function Products() {
         <Product item={item} key={item.id} cart={cart} setCart={setCart}/>
       )}
     </Container>
+
   )
 }
