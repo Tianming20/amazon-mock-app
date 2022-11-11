@@ -2,31 +2,32 @@ import styled from "styled-components"
 
 
 const Container = styled.div`
-    flex: 1;
-    margin: 3px;
-    height: 70vh;
+    margin-left: 30px;
     position: relative;
     display: flex;
-    justify-content: center;
+    align-items: center
 `
 
 const Button = styled.div`
     border: none;
-    padding: 10px;
+    padding: 8px;
     color: white;
     cursor: pointer;
-    font-weight: 600;
+    &:hover{
+   border: 1px solid #d0d0d0;
+   border-radius: 3px;
+}
 `
 
-export default function CategoryItem({item,setCategory,category}) {
-    
+export default function CategoryItem({ item, setCategory, category }) {
+
     const handleClick = (title) => {
         setCategory(title);
     }
 
     return (
-    <Container>
-        <Button onClick={()=>handleClick(item.title)}>{item.title}</Button>
-    </Container>
-  )
+        <Container>
+            <Button onClick={() => handleClick(item.title)}>{item.title}</Button>
+        </Container>
+    )
 }

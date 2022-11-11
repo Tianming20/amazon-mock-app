@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import LogoDevIcon from '@mui/icons-material/LogoDev';
 import { useNavigate } from "react-router-dom";
-import {useState, useContext} from 'react';
+import { useState, useContext } from 'react';
 import { UserContext } from "../context/UserContext";
 
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,15 +14,16 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-    width: 25%;
-    padding: 20px;
+    width: 18%;
+    padding: 10px;
     border: 0.5px #DCDCDC solid;
     border-radius: 12px;
 `;
 
 const IconContainer = styled.div`
-    width: 100px;
-    height: 100px;
+    margin-top: 20px;
+    width: 80px;
+    height: 60px;
     display: flex;
     justify-content: center;
 `
@@ -35,12 +35,12 @@ const ErrMsg = styled.p`
     margin-bottom: 0.5rem;
     display: flex;
     justify-content: center;
-    display: ${props=>!props.show&&"hidden"}
+    display: ${props => !props.show && "hidden"}
 `
 
 const Title = styled.h2`
-    font-size: ${props=>props.name==="signup" ? "40px" : "20px"};
-    color: ${props=>props.name==="signup" ? "black" : "#696969"};
+    font-size: ${props => props.name === "signup" ? "28px" : "20px"};
+    color: ${props => props.name === "signup" ? "black" : "#696969"};
     font-weight: 500;
     display: flex;
     justify-content: center;
@@ -55,7 +55,7 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 400;
 `
 
@@ -70,21 +70,27 @@ const Agreement = styled.span`
     margin: 20px 0px;
     display: flex;
     justify-content: center;
-` 
+`
 
 const Button = styled.button`
     margin-top: 20px;
-    background-color: ${props=>props.name==="signup" ? "#DAA502" : "#D3D3D3"};
+    background-color: ${props => props.name === "signup" ? "#f4d078" : "#FFFFFF"};
     border: 1px black solid;
     border-radius: 4px;
     color: black;
     cursor: pointer;
-    width: ${props=>props.name==="signup" ? "85%" : "500px"};
-    height: 50px;
+    width: 85%;
+    height: 40px;
+    border-radius: 4px;
+    border-color: #a88734 #9c7e31 #846a29;
+    &:hover {
+    background-color: #F5C06A;
+    
+  }
 `;
 
 const Bottom = styled.div`
-    width: 30%
+    width: 18%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -97,58 +103,58 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, setErr] = useState("");
-    const {userInfo, setUserInfo, isAuth, setIsAuth} = useContext(UserContext);
+    const { userInfo, setUserInfo, isAuth, setIsAuth } = useContext(UserContext);
     const handleSubmit = (e) => {
-        e.preventDefault(); 
-        if(email.length===0){
+        e.preventDefault();
+        if (email.length === 0) {
             setErr("Email can't be empty!")
             return
-        } else if(password.length===0){
-                setErr("Password can't be empty!")
-                return
+        } else if (password.length === 0) {
+            setErr("Password can't be empty!")
+            return
         } else {
-                setUserInfo([...userInfo,{id:userInfo.length+1,email, password}])
-                setEmail("");
-                setPassword("");
-                navigate("/login");
-                
+            setUserInfo([...userInfo, { id: userInfo.length + 1, email, password }])
+            setEmail("");
+            setPassword("");
+            navigate("/login");
+
         }
     }
 
-  return (
-    <>
-        <Container>
-            <IconContainer>
-                <LogoDevIcon color="secondary" fontSize="large" />
-            </IconContainer>
-            <Wrapper>
-                <ErrMsg show={err?"show":"hidden"}>{err}</ErrMsg>
-                <Title name="signup">Create account</Title>
-                <Form onSubmit={handleSubmit}>
-                    <Label htmlFor="email">
-                        Enter your Email Address
-                    </Label>
-                    <Input type="email" id="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                    <Label htmlFor="password">
-                        Enter your Password
-                    </Label>
-                    <Input type="text" id="password" value={password} onChange={(e)=>{setPassword(e.target.value);}}/>
-                    <Button name="signup" type="submit">Sign Up</Button>
-                </Form>
-                <Agreement>
-                    By creating an account, you agree to Website's Conditions of Use and Privacy Notice.
-                </Agreement>
-            </Wrapper>
-            <Bottom>
-                <Title>
-                     Already have an account?
-                </Title>
-                <Button  onClick={()=>navigate("/login")}>Sign In</Button>
-            </Bottom>
-        </Container>
-        
-    </>
-  )
+    return (
+        <>
+            <Container>
+                <IconContainer>
+                    <LogoDevIcon color="secondary" fontSize="large" onClick={() => { navigate("/") }} />
+                </IconContainer>
+                <Wrapper>
+                    <ErrMsg show={err ? "show" : "hidden"}>{err}</ErrMsg>
+                    <Title name="signup">Create account</Title>
+                    <Form onSubmit={handleSubmit}>
+                        <Label htmlFor="email">
+                            Enter your Email Address
+                        </Label>
+                        <Input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <Label htmlFor="password">
+                            Enter your Password
+                        </Label>
+                        <Input type="text" id="password" value={password} onChange={(e) => { setPassword(e.target.value); }} />
+                        <Button name="signup" type="submit">Sign Up</Button>
+                    </Form>
+                    <Agreement>
+                        By creating an account, you agree to Website's Conditions of Use and Privacy Notice.
+                    </Agreement>
+                </Wrapper>
+                <Bottom>
+                    <Title>
+                        Already have an account?
+                    </Title>
+                    <Button onClick={() => navigate("/login")}>Sign In</Button>
+                </Bottom>
+            </Container>
+
+        </>
+    )
 }
 
 export default Register

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
-  background-color: #4169E1;
+  background-color: #143D9C;
   color: white;
 `
 const Left = styled.div`
@@ -54,7 +54,7 @@ export default function Footer() {
           <ListItem>Returns</ListItem>
         </List>
       </Left>
-      <Medium>  
+      <Medium>
         <List>
           <Title>Sell</Title>
           <ListItem>Start selling</ListItem>

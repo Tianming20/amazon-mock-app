@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import styled from 'styled-components'
 import { categories } from '../data'
 import CategoryItem from './CategoryItem'
@@ -7,13 +7,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const Container = styled.div`
   display: flex;
-  justify-content:space-between;
-  background-color: #4169E1;
-  height: 60px;
+  background-color: #143D9C;
+  height: 45px;
 `
 const Button = styled.button`
   color: white;
-  background-color: #4169E1;
+  background-color: #143D9C;
   border: none;
   cursor: pointer;
   font-weight: 600;
@@ -23,21 +22,22 @@ const MenuIconContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-left: 30px;
+  margin-right: 10px;
 `
 
 export default function Category() {
 
-  const {category,setCategory} = useContext(CategoryContext);
+  const { category, setCategory } = useContext(CategoryContext);
 
 
   return (
     <Container>
       <MenuIconContainer>
-        <MenuIcon></MenuIcon>
+        <MenuIcon style={{ color: "white" }}></MenuIcon>
       </MenuIconContainer>
-      <Button onClick={()=>setCategory("All")}>All</Button>
-      {categories.map(item=>
-        <CategoryItem item={item} key={item.id} setCategory={setCategory} category={category}/>)}
+      <Button onClick={() => setCategory("All")}>All</Button>
+      {categories.map(item =>
+        <CategoryItem item={item} key={item.id} setCategory={setCategory} category={category} />)}
     </Container>
   )
 }

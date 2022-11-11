@@ -12,7 +12,7 @@ const ProductImgContainer = styled.div`
 `
 
 const ProductImg = styled.img`
-    width: 200px;
+    width: 100px;
 `
 
 const ProductDetail = styled.div`
@@ -34,8 +34,8 @@ const ProductPrice = styled.div`
 const ProductAmountConatiner = styled.div`
     flex: 1;    
     display: flex;
-    gap: 15px;
-` 
+    gap: 12px;
+`
 
 const ProductAmount = styled.div`
     display: flex;
@@ -57,7 +57,7 @@ const ButtonConatiner = styled.div`
 `
 
 const Button = styled.button`
-    height: 50px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,38 +71,38 @@ const Button = styled.button`
     }
 `
 
-export default function ShoppingCartItem({item, cart, setCart}) {
+export default function ShoppingCartItem({ item, cart, setCart }) {
 
     const removeItem = (removeItemId) => {
-        const newCart = cart.filter(ele=>ele.id !== removeItemId);
+        const newCart = cart.filter(ele => ele.id !== removeItemId);
         setCart(newCart);
     }
 
     const increment = (itemId) => {
-        const index = cart.findIndex(ele=>ele.id===itemId);
+        const index = cart.findIndex(ele => ele.id === itemId);
         const num = cart[index].number;
-        const newItem = {...cart[index],number:num+1};
-        const newCart = cart.map(ele=>{
-            if(ele.id===itemId){
-            return newItem;
+        const newItem = { ...cart[index], number: num + 1 };
+        const newCart = cart.map(ele => {
+            if (ele.id === itemId) {
+                return newItem;
             } else {
-            return ele;
+                return ele;
             }
         })
         setCart(newCart)
     }
 
     const decrement = (itemId) => {
-        const index = cart.findIndex(ele=>ele.id===itemId);
+        const index = cart.findIndex(ele => ele.id === itemId);
         const num = cart[index].number;
-        if(num > 1){
-            const newItem = {...cart[index],number:num-1};
-            const newCart = cart.map(ele=>{
-            if(ele.id===itemId){
-                return newItem;
-            } else {
-                return ele;
-            }
+        if (num > 1) {
+            const newItem = { ...cart[index], number: num - 1 };
+            const newCart = cart.map(ele => {
+                if (ele.id === itemId) {
+                    return newItem;
+                } else {
+                    return ele;
+                }
             })
             setCart(newCart)
         } else {
@@ -110,27 +110,27 @@ export default function ShoppingCartItem({item, cart, setCart}) {
         }
     }
 
-  return (
-    <Container>
-        <ProductImgContainer>
-            <ProductImg src={item.img} alt={item.name}></ProductImg>
-        </ProductImgContainer>
-        <ProductDetail>{item.name}</ProductDetail>
-        <ProductPrice>{item.price}</ProductPrice>
-        <ProductAmountConatiner>
-            <IconContainer onClick={()=>increment(item.id)}>
-                <AddCircleOutlineIcon></AddCircleOutlineIcon>
-            </IconContainer>
-            <ProductAmount>{item.number}</ProductAmount>
-            <IconContainer onClick={()=>decrement(item.id)}>
-                <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>
-            </IconContainer>
-        </ProductAmountConatiner>
-        <ButtonConatiner>
-            <Button onClick={()=>removeItem(item.id)}>Remove</Button>
-        </ButtonConatiner>
-        
-    </Container>
-    
-  )
+    return (
+        <Container>
+            <ProductImgContainer>
+                <ProductImg src={item.img} alt={item.name}></ProductImg>
+            </ProductImgContainer>
+            <ProductDetail>{item.name}</ProductDetail>
+            <ProductPrice>{item.price}</ProductPrice>
+            <ProductAmountConatiner>
+                <IconContainer onClick={() => increment(item.id)}>
+                    <AddCircleOutlineIcon></AddCircleOutlineIcon>
+                </IconContainer>
+                <ProductAmount>{item.number}</ProductAmount>
+                <IconContainer onClick={() => decrement(item.id)}>
+                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>
+                </IconContainer>
+            </ProductAmountConatiner>
+            <ButtonConatiner>
+                <Button onClick={() => removeItem(item.id)}>Remove</Button>
+            </ButtonConatiner>
+
+        </Container>
+
+    )
 }
