@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
 import { UserContext } from "../context/UserContext";
 
+
 const Wrapper = styled.div`
   padding-left: 70px;
   display: flex;
