@@ -3,6 +3,7 @@ import LogoDevIcon from '@mui/icons-material/LogoDev';
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
 import { UserContext } from "../context/UserContext";
+import axios from "axios";
 
 const Container = styled.div`
     width: 100vw;
@@ -72,9 +73,9 @@ const Button = styled.button`
     height: 40px;
     border-radius: 4px;
     border-color: #a88734 #9c7e31 #846a29;
-  cursor: pointer;
-  &:hover {
-    background-color: #F5C06A;
+    cursor: pointer;
+    &:hover {
+        background-color: #F5C06A;
     
   }
 `;
@@ -102,7 +103,7 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, setErr] = useState("");
-    const { userInfo, setUserInfo, isAuth, setIsAuth } = useContext(UserContext);
+    const {isAuth, setIsAuth } = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -113,27 +114,49 @@ function Login() {
             setErr("Password can't be empty!")
             return
         } else {
-            userInfo.forEach(element => {
-                if (element.email === email) {
-                    if (element.password === password) {
-                        setEmail("");
-                        setPassword("");
-                        setErr("");
-                        setIsAuth(true);
-                        navigate("/loginsuccess");
-                        return
-                    } else {
-                        setErr("The password isn't correct!");
-                        setPassword("");
-                        return
-                    }
-                } else {
-                    setErr("There is no user record corresponding to this email.");
+            const bodyFormData = new FormData();
+            bodyFormData.append("username",email);
+            bodyFormData.append("password",password);
+            axios
+            .post("http://localhost:8080/login", bodyFormData, {
+              headers: { "Content-Type": "multipart/form-data" }
+            })
+            .then((res) => {
+                if(res.status === 200){
                     setEmail("");
                     setPassword("");
-                    return
+                    setErr("");
+                    setIsAuth(true);
+                    navigate("/loginsuccess");
+                    console.log("Login successfully")
+                } else {
+                    setEmail("");
+                    setPassword("");
+                    setErr("Login Failed!");
                 }
-            });
+            })
+            .catch(() => {setErr("Login Failed!")});
+            // userInfo.forEach(element => {
+            //     if (element.email === email) {
+            //         if (element.password === password) {
+            //             setEmail("");
+            //             setPassword("");
+            //             setErr("");
+            //             setIsAuth(true);
+            //             navigate("/loginsuccess");
+            //             return
+            //         } else {
+            //             setErr("The password isn't correct!");
+            //             setPassword("");
+            //             return
+            //         }
+            //     } else {
+            //         setErr("There is no user record corresponding to this email.");
+            //         setEmail("");
+            //         setPassword("");
+            //         return
+            //     }
+            // });
         }
 
     }

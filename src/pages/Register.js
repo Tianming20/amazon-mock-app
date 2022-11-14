@@ -3,6 +3,8 @@ import LogoDevIcon from '@mui/icons-material/LogoDev';
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
 import { UserContext } from "../context/UserContext";
+import axios from "axios";
+
 
 const Container = styled.div`
     width: 100vw;
@@ -103,7 +105,7 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, setErr] = useState("");
-    const { userInfo, setUserInfo, isAuth, setIsAuth } = useContext(UserContext);
+    // const { userInfo, setUserInfo, isAuth, setIsAuth } = useContext(UserContext);
     const handleSubmit = (e) => {
         e.preventDefault();
         if (email.length === 0) {
@@ -113,11 +115,26 @@ function Register() {
             setErr("Password can't be empty!")
             return
         } else {
-            setUserInfo([...userInfo, { id: userInfo.length + 1, email, password }])
-            setEmail("");
-            setPassword("");
-            navigate("/login");
-
+            // setUserInfo([...userInfo, { id: userInfo.length + 1, email, password }])
+            axios.post("http://localhost:8080/users",JSON.stringify({username: email, password: password}),
+                {
+                    headers: {"Content-Type":"application/json"},
+                    withCredentials: true
+                }    
+            ).then(res=>{
+                
+                    if(res.status === 200){
+                        setEmail("");
+                        setPassword("");
+                        navigate("/login");
+                        console.log("Register successfully")
+                    } else {
+                        console.log("Register failed!")
+                    }
+            }
+            ).catch(
+                ()=>setErr("Register failed!")
+            )
         }
     }
 
@@ -158,3 +175,4 @@ function Register() {
 }
 
 export default Register
+
