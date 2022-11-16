@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const IconContainer = styled.div`
-margin-top: 20px;
+    margin-top: 20px;
     width: 80px;
     height: 60px;
     display: flex;

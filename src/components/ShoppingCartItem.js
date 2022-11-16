@@ -5,6 +5,9 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display: flex;
+    &:hover {
+        background-color: #F5F5F5;
+    }
 `
 
 const ProductImgContainer = styled.div`
@@ -13,6 +16,9 @@ const ProductImgContainer = styled.div`
 
 const ProductImg = styled.img`
     width: 100px;
+    &:hover{
+        transform: scale(1.5)
+    }
 `
 
 const ProductDetail = styled.div`

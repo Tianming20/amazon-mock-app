@@ -193,4 +193,40 @@ export const sliderItems = [
     },
   ]
 
-  
+export const sellingList = [
+    {
+        id:1,
+        category: "Clothing",
+        name:"White Men's T-shirt",
+        price: "$15",
+        img:"https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+      },
+      {
+        id:2,
+        category: "Sporting",
+        name:"Men's Shoes AJ",
+        price: "$248",
+        img:"https://i.ebayimg.com/images/g/4MEAAOSwwL5i~jO7/s-l640.png",
+      },
+      {
+        id:3,
+        category: "Clothing",
+        name:"Men's Cotton T-shirt",
+        price: "$12",
+        img:"https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+      },
+      {
+        id:4,
+        category: "Toys",
+        name:"Lego Creator Toys",
+        price: "$50",
+        img:"https://i.ebayimg.com/images/g/a04AAOSwiNRiaOra/s-l640.jpg",
+      },
+      {
+        id:5,
+        category: "Bag",
+        name:"Shopping Bag",
+        price: "$5",
+        img:"https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+      }
+];
