@@ -111,7 +111,7 @@ export default function Navbar() {
         <Right>
           <Button onClick={handleClick}>{isAuth ? "Sign Out" : "Sign In"}</Button>
           <Button onClick={() => { navigate("/register") }}>Register</Button>
-          <Button onClick={() => { navigate("/upload") }}>Upload</Button>
+          <Button onClick={() => { navigate("/sell") }}>Selling</Button>
           <Button onClick={() => { navigate("/checkout") }}>Cart</Button>
         </Right>
       </Wrapper>

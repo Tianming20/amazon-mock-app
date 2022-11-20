@@ -5,8 +5,6 @@ import Footer from '../components/Footer'
 import ShoppingCartItem from '../components/ShoppingCartItem'
 import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/CartContext'
-import { QrCodeScannerOutlined } from '@mui/icons-material'
-
 
 const Container = styled.div`
 `
@@ -23,9 +21,8 @@ const Left = styled.div`
 
 const Right = styled.div`
     flex: 1;
-
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
     border: 0.5px solid lightgray;
     border-radius: 10px;
     padding: 0 40px;
