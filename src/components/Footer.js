@@ -9,6 +9,7 @@ const Container = styled.div`
   background-color: #143D9C;
   color: white;
   padding-bottom: 80px;
+  margin-top: 50px;
 `
 const Left = styled.div`
   flex: 1;
