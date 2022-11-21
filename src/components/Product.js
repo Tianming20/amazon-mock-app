@@ -1,6 +1,9 @@
 
 import styled from 'styled-components'
 import { popularProducts } from '../data'
+import { useState, useEffect } from 'react';
+
+
 
 const Container = styled.div`
     padding: 0px 30px;
@@ -53,9 +56,24 @@ const Button = styled.button`
     
   }
 `
+
+
+
 export default function Product({ item, cart, setCart }) {
+  const text = "Add To Cart"
+  const [buttonText, setButtonText] = useState(text);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setButtonText(text);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [buttonText])
+
   const handleClick = (addItemId) => {
+    setButtonText("Item added!")
     if (cart.findIndex(ele => ele.id === addItemId) !== -1) {
+
       const index = cart.findIndex(ele => ele.id === addItemId);
       const num = cart[index].number;
       const newItem = { ...cart[index], number: num + 1 };
@@ -71,6 +89,7 @@ export default function Product({ item, cart, setCart }) {
       const [newAddItem] = popularProducts.filter(ele => ele.id === addItemId);
       setCart([...cart, { ...newAddItem, number: 1 }]);
     }
+
   }
 
   return (
@@ -78,7 +97,7 @@ export default function Product({ item, cart, setCart }) {
       <Image src={item.img} />
       <Title>{item.name}</Title>
       <Price>{item.price}</Price>
-      <Button onClick={() => handleClick(item.id)}>Add to Cart</Button>
+      <Button onClick={() => handleClick(item.id)}>{buttonText}</Button>
     </Container>
   )
 }
