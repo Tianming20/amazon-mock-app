@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display: flex;
+    padding: 20px;
     &:hover {
         background-color: #F5F5F5;
     }
@@ -16,13 +17,10 @@ const ProductImgContainer = styled.div`
 
 const ProductImg = styled.img`
     width: 100px;
-    &:hover{
-        transform: scale(1.5)
-    }
 `
 
 const ProductDetail = styled.div`
-    flex: 1;
+    flex: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,7 +36,7 @@ const ProductPrice = styled.div`
 `
 
 const ProductAmountConatiner = styled.div`
-    flex: 1;    
+    flex: 2;    
     display: flex;
     gap: 12px;
 `

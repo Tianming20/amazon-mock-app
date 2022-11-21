@@ -18,7 +18,7 @@ const Left = styled.div`
     display: flex;
     flex-direction: column;
     width: 70vw;
-    padding: 50px;
+    padding: 30px;
 `
 
 const Right = styled.div`
@@ -101,6 +101,7 @@ export default function Cart() {
         setShippingFee(caculateShipping(cart));
         setTotal(subtotal + shippingFee);
     }, [cart, subtotal, shippingFee])
+
     return (
         <Container>
             <Navbar></Navbar>

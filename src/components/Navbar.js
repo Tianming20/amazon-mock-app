@@ -122,7 +122,7 @@ export default function Navbar() {
     setCount(caculateProduct(cart));
   }, [cart])
 
-  console.log(count)
+  // console.log(count)
 
   return (
     <>
