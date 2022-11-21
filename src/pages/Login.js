@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import LogoDevIcon from '@mui/icons-material/LogoDev';
+import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
 import { UserContext } from "../context/UserContext";
+import Navbar from '../components/Navbar'
 import axios from "axios";
 
 const Container = styled.div`
@@ -103,7 +104,7 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, setErr] = useState("");
-    const {isAuth, setIsAuth } = useContext(UserContext);
+    const { isAuth, setIsAuth } = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -115,27 +116,27 @@ function Login() {
             return
         } else {
             const bodyFormData = new FormData();
-            bodyFormData.append("username",email);
-            bodyFormData.append("password",password);
+            bodyFormData.append("username", email);
+            bodyFormData.append("password", password);
             axios
-            .post("http://localhost:8080/login", bodyFormData, {
-              headers: { "Content-Type": "multipart/form-data" }
-            })
-            .then((res) => {
-                if(res.status === 200){
-                    setEmail("");
-                    setPassword("");
-                    setErr("");
-                    setIsAuth(true);
-                    navigate("/loginsuccess");
-                    console.log("Login successfully")
-                } else {
-                    setEmail("");
-                    setPassword("");
-                    setErr("Login Failed!");
-                }
-            })
-            .catch(() => {setErr("Login Failed!")});
+                .post("http://localhost:8080/login", bodyFormData, {
+                    headers: { "Content-Type": "multipart/form-data" }
+                })
+                .then((res) => {
+                    if (res.status === 200) {
+                        setEmail("");
+                        setPassword("");
+                        setErr("");
+                        setIsAuth(true);
+                        navigate("/loginsuccess");
+                        console.log("Login successfully")
+                    } else {
+                        setEmail("");
+                        setPassword("");
+                        setErr("Login Failed!");
+                    }
+                })
+                .catch(() => { setErr("Login Failed!") });
             // userInfo.forEach(element => {
             //     if (element.email === email) {
             //         if (element.password === password) {
@@ -162,9 +163,10 @@ function Login() {
     }
     return (
         <>
+            <Navbar />
             <Container>
                 <IconContainer>
-                    <LogoDevIcon color="secondary" fontSize="large" onClick={() => { navigate("/") }} />
+                    <HomeIcon color="secondary" fontSize="large" onClick={() => { navigate("/") }} />
                 </IconContainer>
                 <Wrapper>
                     <ErrMsg show={err ? "show" : "hidden"}>{err}</ErrMsg>

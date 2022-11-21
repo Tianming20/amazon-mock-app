@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
+import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
 import { UserContext } from "../context/UserContext";
@@ -96,7 +97,7 @@ export default function Navbar() {
       <Wrapper>
         <Left>
           <Logo onClick={() => { navigate("/") }}>
-            Title
+            Home
           </Logo>
           {/* <Language>
             English

@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import LogoDevIcon from '@mui/icons-material/LogoDev';
+import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
 import { UserContext } from "../context/UserContext";
+import Navbar from '../components/Navbar'
 import axios from "axios";
 
 
@@ -116,33 +117,34 @@ function Register() {
             return
         } else {
             // setUserInfo([...userInfo, { id: userInfo.length + 1, email, password }])
-            axios.post("http://localhost:8080/users",JSON.stringify({username: email, password: password}),
+            axios.post("http://localhost:8080/users", JSON.stringify({ username: email, password: password }),
                 {
-                    headers: {"Content-Type":"application/json"},
+                    headers: { "Content-Type": "application/json" },
                     withCredentials: true
-                }    
-            ).then(res=>{
-                
-                    if(res.status === 200){
-                        setEmail("");
-                        setPassword("");
-                        navigate("/login");
-                        console.log("Register successfully")
-                    } else {
-                        console.log("Register failed!")
-                    }
+                }
+            ).then(res => {
+
+                if (res.status === 200) {
+                    setEmail("");
+                    setPassword("");
+                    navigate("/login");
+                    console.log("Register successfully")
+                } else {
+                    console.log("Register failed!")
+                }
             }
             ).catch(
-                ()=>setErr("Register failed!")
+                () => setErr("Register failed!")
             )
         }
     }
 
     return (
         <>
+            <Navbar />
             <Container>
                 <IconContainer>
-                    <LogoDevIcon color="secondary" fontSize="large" onClick={() => { navigate("/") }} />
+                    <HomeIcon color="secondary" fontSize="large" onClick={() => { navigate("/") }} />
                 </IconContainer>
                 <Wrapper>
                     <ErrMsg show={err ? "show" : "hidden"}>{err}</ErrMsg>

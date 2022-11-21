@@ -3,23 +3,23 @@ import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useNavigate } from 'react-router-dom'
-import {useFormik} from 'formik'
+import { useFormik } from 'formik'
 import * as Yup from 'yup';
-import {useDispatch} from "react-redux";
-import {addProducts} from '../store/modules/SellingProducts'
+import { useDispatch } from "react-redux";
+import { addProducts } from '../store/modules/SellingProducts'
 
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 `
 
+
 const Wrapper = styled.div`
-    width: 30%;
+    width: 20%;
     padding: 10px;
-    margin-left: 35%;
     margin-top: 50px;
     margin-bottom: 10px;
     border: 0.5px #DCDCDC solid;
@@ -32,8 +32,6 @@ const Title = styled.h2`
     font-weight: 500;
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
-    
 `;
 
 const Form = styled.form`
@@ -41,16 +39,17 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px;
 `;
 
 const Label = styled.label`
-    font-size: 26px;
+margin-top: 2rem;
+margin-bottom: 1rem;
+    font-size: 18px;
     font-weight: 400;
 `
 
 const Input = styled.input`
-    padding: 10px;
+    padding: 7px;
     color: black;
     width: 80%;
 `;
@@ -63,13 +62,13 @@ const Agreement = styled.span`
 `
 
 const Button = styled.button`
-    margin-top: 20px;
+    margin-top: 40px;
     background-color: "#FFFFFF";
     border: 1px black solid;
     border-radius: 4px;
     color: black;
     cursor: pointer;
-    width: 85%;
+    width: 76%;
     height: 40px;
     border-radius: 4px;
     border-color: #a88734 #9c7e31 #846a29;
@@ -79,8 +78,8 @@ const Button = styled.button`
 `;
 
 const Bottom = styled.div`
-    width: 25%;
-    margin-left: 38%;
+    margin-top: 3rem;
+    width: 17%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -141,68 +140,70 @@ export default function AddProduct() {
             img: Yup.string().required("Required"),
         }),
         onSubmit: (values) => {
-            dispatch(addProducts({newProduct:values}));
+            dispatch(addProducts({ newProduct: values }));
             console.log(values.img);
-            navigate("/sell");  
+            navigate("/sell");
         }
     })
 
-  return (
-    <Container>
-        <Navbar />
-            <Wrapper>
-                    <Title>Add your Product</Title>
+    return (
+        <>
+            <Navbar />
+            <Container>
+
+                <Wrapper>
+                    <Title>List Product</Title>
                     <Form onSubmit={formik.handleSubmit}>
                         <Label htmlFor="name">
-                            Enter the name of your product
+                            Product Name
                         </Label>
                         <Input type="text" id="name" name="name"
-                            value={formik.values.name} 
+                            value={formik.values.name}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
-                        {formik.touched.name && formik.errors.name? <P>{formik.errors.name}</P>: null}
+                        {formik.touched.name && formik.errors.name ? <P>{formik.errors.name}</P> : null}
                         <Label htmlFor="price">
-                            Enter the price of your product
+                            Product Price
                         </Label>
                         <Input type="text" id="price" name="price"
-                            value={formik.values.price} 
+                            value={formik.values.price}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
-                        {formik.touched.price && formik.errors.price? <P>{formik.errors.price}</P>: null}
+                        {formik.touched.price && formik.errors.price ? <P>{formik.errors.price}</P> : null}
                         <Label htmlFor="category">
-                            Enter the category of your product
+                            Product Category
                         </Label>
                         <Input type="text" id="category" name="category"
-                            value={formik.values.category} 
+                            value={formik.values.category}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
-                        {formik.touched.category && formik.errors.category? <P>{formik.errors.category}</P>: null}
+                        {formik.touched.category && formik.errors.category ? <P>{formik.errors.category}</P> : null}
                         <Label htmlFor="image">
-                            Upload your image
+                            Upload Product Image
                         </Label>
                         <Input type="file" id="image" name="img" accept="image/*"
-                            onChange={e=>formik.setFieldValue("img", URL.createObjectURL(e.currentTarget.files[0]))}
+                            onChange={e => formik.setFieldValue("img", URL.createObjectURL(e.currentTarget.files[0]))}
                             onBlur={formik.handleBlur}
                         />
-                        {formik.touched.img && formik.errors.img? <P>{formik.errors.img}</P> : null}
+                        {formik.touched.img && formik.errors.img ? <P>{formik.errors.img}</P> : null}
                         {formik.values.img ? <PreviewImg src={formik.values.img} alt={formik.values.name}></PreviewImg> : null}
-                        <Button type="submit">Add Product</Button>
+                        <Button type="submit">Create Listing</Button>
                     </Form>
                     <Agreement>
                         By Adding a product, you agree to Website's Conditions of Use and Privacy Notice.
                     </Agreement>
                 </Wrapper>
                 <Bottom>
-                    <Subtitle>
-                        -- Back to Selling Page --
-                    </Subtitle>
-                    <Bottombutton onClick={() => navigate("/sell")}>Selling Page</Bottombutton>
+
+                    <Bottombutton onClick={() => navigate("/sell")}>View Current Listing</Bottombutton>
                 </Bottom>
-                
-        <Footer />
-    </Container>
-  )
+
+
+            </Container>
+            <Footer />
+        </>
+    )
 }
