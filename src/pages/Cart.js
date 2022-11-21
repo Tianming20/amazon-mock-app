@@ -11,6 +11,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 20px;
     display: flex;
+    margin-left: 5rem;
+    margin-right: 5rem;
 `
 const Left = styled.div`
     display: flex;
@@ -32,7 +34,7 @@ const Right = styled.div`
 
 const Button = styled.button`
     width: 100%;
-    padding: 9px;
+    padding: 8px;
     align-items: center;
     margin: auto;
     margin-top: 100px;
@@ -49,6 +51,8 @@ const Button = styled.button`
   }
     
 `
+
+
 
 const Title = styled.h2`
     font-weight: 400;
@@ -128,6 +132,7 @@ export default function Cart() {
                             $ {shippingFee}
                         </SummaryItemPrice>
                     </SummaryItem>
+                    <hr />
                     <SummaryItem>
                         <SummaryItemText>
                             Total

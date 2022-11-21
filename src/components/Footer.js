@@ -6,10 +6,9 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
-  background-color: #143D9C;
+  background-color: #00055A;
   color: white;
   padding-bottom: 80px;
-  margin-top: 50px;
 `
 const Left = styled.div`
   flex: 1;
@@ -42,47 +41,65 @@ const Right = styled.div`
   padding: 20px;
 `
 
+const Move = styled.span`
+text-align: center;
+background-color: #143D9C;
+color: white;
+margin-top: 50px;
+padding: 10px;
+&:hover {
+        background-color: #2152c4;
+    
+  }
+`
+
+const handleTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
 export default function Footer() {
   return (
-    <Container>
-      <Left>
-        <List>
-          <Title>Buy</Title>
-          <ListItem>Registration</ListItem>
-          <ListItem>Money Back Guarantee</ListItem>
-          <ListItem>Buying help</ListItem>
-          <ListItem>Stores</ListItem>
-          <ListItem>Returns</ListItem>
-        </List>
-      </Left>
-      <Medium>
-        <List>
-          <Title>Sell</Title>
-          <ListItem>Start selling</ListItem>
-          <ListItem>How to sell</ListItem>
-          <ListItem>Business sellers</ListItem>
-          <ListItem>Affiliates</ListItem>
-          <ListItem>Seller Center</ListItem>
-        </List>
-      </Medium>
-      <Right>
-        <List>
-          <Title>Stay connected</Title>
-          <ListItem>
-            <FacebookIcon></FacebookIcon>
-            Facebook
-          </ListItem>
-          <ListItem>
-            <TwitterIcon></TwitterIcon>
-            Twitter
-          </ListItem>
-          <ListItem>
-            <InstagramIcon></InstagramIcon>
-            Instagram
-          </ListItem>
-        </List>
-      </Right>
-    </Container>
+    <>
+      <Move onClick={handleTop}>Back to top</Move>
+      <Container>
+        <Left>
+          <List>
+            <Title>Buy</Title>
+            <ListItem>Registration</ListItem>
+            <ListItem>Money Back Guarantee</ListItem>
+            <ListItem>Buying help</ListItem>
+            <ListItem>Stores</ListItem>
+            <ListItem>Returns</ListItem>
+          </List>
+        </Left>
+        <Medium>
+          <List>
+            <Title>Sell</Title>
+            <ListItem>Start selling</ListItem>
+            <ListItem>How to sell</ListItem>
+            <ListItem>Business sellers</ListItem>
+            <ListItem>Affiliates</ListItem>
+            <ListItem>Seller Center</ListItem>
+          </List>
+        </Medium>
+        <Right>
+          <List>
+            <Title>Stay connected</Title>
+            <ListItem>
+              <FacebookIcon></FacebookIcon>
+              Facebook
+            </ListItem>
+            <ListItem>
+              <TwitterIcon></TwitterIcon>
+              Twitter
+            </ListItem>
+            <ListItem>
+              <InstagramIcon></InstagramIcon>
+              Instagram
+            </ListItem>
+          </List>
+        </Right>
+      </Container>
+    </>
   )
 }
