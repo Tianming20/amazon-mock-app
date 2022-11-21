@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Navbar from "../components/Navbar";
+import HomeIcon from '@mui/icons-material/Home';
 import Footer from "../components/Footer"
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,9 +14,6 @@ import { removeProducts } from "../store/modules/SellingProducts";
 const Container = styled.div`
     width: 100%;
     height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;  
 `
 const TitleContainer = styled.div`
     display: flex;
@@ -35,11 +32,12 @@ const Title = styled.h2`
 `
 
 const Wrapper = styled.div`
-    height: 80%;
+    height: 100%;
+    margin: 0 12rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin: 0 12rem;
 `
 
 const Button = styled.button`
@@ -49,7 +47,6 @@ const Button = styled.button`
     margin-bottom: 3em;
     color: black;
     cursor: pointer;
-    width: 8%;
     height: 40px;
     border-color: #a88734 #9c7e31 #846a29;
     &:hover {
@@ -61,6 +58,15 @@ const Img = styled.img`
   width: 90px;
   height: 80px;
   
+`
+
+const IconContainer = styled.div`
+    margin-top: 20px;
+    width: 80px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const DeleteButton = styled.button`
@@ -93,13 +99,15 @@ export default function Selling() {
 
     return (
         <Container>
-            <Navbar />
             <Wrapper>
+                <IconContainer>
+                    <HomeIcon color="secondary" fontSize="large" onClick={() => { navigate("/") }} />
+                </IconContainer>
                 <TitleContainer>
                     <Title>Current Listing</Title>
 
                 </TitleContainer>
-                <TableContainer sx={{ border: 1, borderColor: 'primary.main', mb: 4, ml: 4, mr: 4, width: 'auto' }}>
+                <TableContainer sx={{ border: 1, borderColor: 'primary.main', mb: 4, ml: 4, mr: 4, width: '75%' }}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow >

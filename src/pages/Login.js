@@ -163,7 +163,7 @@ function Login() {
     }
     return (
         <>
-            <Navbar />
+
             <Container>
                 <IconContainer>
                     <HomeIcon color="secondary" fontSize="large" onClick={() => { navigate("/") }} />

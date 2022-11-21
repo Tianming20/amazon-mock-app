@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Navbar from '../components/Navbar'
+import HomeIcon from '@mui/icons-material/Home';
 import Footer from '../components/Footer'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
@@ -20,12 +20,19 @@ const Container = styled.div`
 const Wrapper = styled.div`
     width: 20%;
     padding: 10px;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 10px;
     border: 0.5px #DCDCDC solid;
     border-radius: 12px;
 `;
 
+const IconContainer = styled.div`
+    margin-top: 20px;
+    width: 80px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+`
 
 const Title = styled.h2`
     color: #696969;
@@ -148,9 +155,11 @@ export default function AddProduct() {
 
     return (
         <>
-            <Navbar />
-            <Container>
 
+            <Container>
+                <IconContainer>
+                    <HomeIcon color="secondary" fontSize="large" onClick={() => { navigate("/") }} />
+                </IconContainer>
                 <Wrapper>
                     <Title>List Product</Title>
                     <Form onSubmit={formik.handleSubmit}>
