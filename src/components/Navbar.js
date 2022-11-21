@@ -2,8 +2,9 @@ import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from "../context/UserContext";
+import { CartContext } from '../context/CartContext'
 
 
 const Wrapper = styled.div`
@@ -66,6 +67,19 @@ const Input = styled.input`
  
 `
 
+
+const Count = styled.span`
+  color: white;
+  padding: 5px 10px;
+  font-size: 17px;
+  background-color: #e25822;
+  border-radius: 7px;
+  margin-left:10px;
+`
+
+
+
+
 const Button = styled.button`
   font-size: 18px;
   cursor: pointer;
@@ -84,6 +98,9 @@ export default function Navbar() {
 
   const navigate = useNavigate();
   const { userInfo, setUserInfo, isAuth, setIsAuth } = useContext(UserContext);
+  const { cart, setCart } = useContext(CartContext);
+  const [count, setCount] = useState(0);
+
   const handleClick = () => {
     if (!isAuth) {
       navigate("/login");
@@ -92,6 +109,21 @@ export default function Navbar() {
       setIsAuth(prev => !prev)
     }
   }
+
+  const caculateProduct = (cart) => {
+    let res = 0;
+    cart.forEach(ele => {
+      res += ele.number;
+    })
+    return res;
+  }
+
+  useEffect(() => {
+    setCount(caculateProduct(cart));
+  }, [cart])
+
+  console.log(count)
+
   return (
     <>
       <Wrapper>
@@ -113,7 +145,7 @@ export default function Navbar() {
           <Button onClick={handleClick}>{isAuth ? "Sign Out" : "Sign In"}</Button>
           <Button onClick={() => { navigate("/register") }}>Register</Button>
           <Button onClick={() => { navigate("/sell") }}>Selling</Button>
-          <Button onClick={() => { navigate("/checkout") }}>Cart</Button>
+          <Button onClick={() => { navigate("/checkout") }}>Cart<Count>{count}</Count></Button>
         </Right>
       </Wrapper>
     </>
