@@ -48,6 +48,7 @@ const Button = styled.button`
     color: black;
     cursor: pointer;
     height: 40px;
+    padding: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     &:hover {
         background-color: #F5C06A;   
@@ -89,6 +90,7 @@ const ButtonContainer = styled.div`
     align-items: center;
     margin-top: 1em;
     margin-bottom: 1em;
+    
 `
 
 export default function Selling() {
