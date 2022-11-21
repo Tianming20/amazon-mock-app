@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display: flex;
-    padding: 20px;
+    padding: 5px 30px;
     &:hover {
         background-color: #F5F5F5;
     }
@@ -20,6 +20,7 @@ const ProductImg = styled.img`
 `
 
 const ProductDetail = styled.div`
+    font-weight: bold;
     flex: 2;
     display: flex;
     align-items: center;
