@@ -41,7 +41,8 @@ const Right = styled.div`
   padding: 20px;
 `
 
-const Move = styled.span`
+const Move = styled.div`
+width: 100%;
 text-align: center;
 background-color: #143D9C;
 color: white;

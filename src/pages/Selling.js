@@ -139,8 +139,6 @@ export default function Selling() {
                     </Table>
                 </TableContainer>
                 <ButtonContainer><Button onClick={() => navigate("/addproduct")}>Create Listing</Button></ButtonContainer>
-
-
             </Wrapper>
             <Footer />
         </Container>
