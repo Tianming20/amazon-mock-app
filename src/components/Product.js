@@ -66,7 +66,7 @@ export default function Product({ item, cart, setCart }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setButtonText(text);
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timer);
   }, [buttonText])
 
