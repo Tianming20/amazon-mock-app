@@ -28,7 +28,7 @@ const ProductDetail = styled.div`
 
 
 const ProductPrice = styled.div`
-    flex: 1;
+    flex: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,6 +62,7 @@ const ButtonConatiner = styled.div`
 
 const Button = styled.button`
     height: 32px;
+    padding: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
