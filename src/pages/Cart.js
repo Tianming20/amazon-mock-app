@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     display: flex;
     margin-left: 5rem;
     margin-right: 5rem;
+    min-height: 60vh;
 `
 const Left = styled.div`
     display: flex;
@@ -27,17 +28,16 @@ const Right = styled.div`
     justify-content: center;
     border: 0.5px solid lightgray;
     border-radius: 10px;
-    padding: 0 40px;
-    height: 60vh;
-    margin-top: 50px;
+    padding: 5px 40px;
+    margin-top: 30px;
 `
 
 const Button = styled.button`
     width: 100%;
-    padding: 8px;
+    padding: 6px;
     align-items: center;
-    margin: auto;
-    margin-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 10px;
     background-color: #f4d078;
     color: black;
     font-weight: 600;
