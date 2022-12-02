@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 const Left = styled.div`
     display: flex;
     flex-direction: column;
-    width: 70vw;
+    width: 60vw;
     padding: 30px;
 `
 
@@ -28,7 +28,7 @@ const Right = styled.div`
     justify-content: center;
     border: 0.5px solid lightgray;
     border-radius: 10px;
-    padding: 5px 40px;
+    padding: 5px 10px;
     margin-top: 30px;
 `
 
@@ -43,7 +43,7 @@ const Button = styled.button`
     font-weight: 600;
     border-style: solid;
     border-width: 1px;
-    border-radius: 4px;
+    border-radius: 6px;
     border-color: #a88734 #9c7e31 #846a29;
     &:hover {
     background-color: #F5C06A;

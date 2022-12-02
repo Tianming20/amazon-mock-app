@@ -18,7 +18,7 @@ const Container = styled.div`
 
 
 const Wrapper = styled.div`
-    width: 20%;
+    width: 30%;
     padding: 10px;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -206,7 +206,6 @@ export default function AddProduct() {
                     </Agreement>
                 </Wrapper>
                 <Bottom>
-
                     <Bottombutton onClick={() => navigate("/sell")}>View Current Listing</Bottombutton>
                 </Bottom>
 

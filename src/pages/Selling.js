@@ -96,7 +96,7 @@ const ButtonContainer = styled.div`
 export default function Selling() {
 
     const navigate = useNavigate();
-    const { sellingProducts } = useSelector(state => state.SellingProducts)
+    const { sellingProducts } = useSelector(state => state.sellingProducts)
     const dispatch = useDispatch();
 
     return (

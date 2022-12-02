@@ -1,8 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit"
-import SellingProducts from "./modules/SellingProducts"
+import sellingProductsReducer from "./modules/SellingProducts"
+import productDetailReducer from "./modules/DetailSlice"
 
 export default configureStore({
     reducer: {
-        SellingProducts
+        sellingProducts: sellingProductsReducer,
+        productDetail: productDetailReducer,
     }
 })

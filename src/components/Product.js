@@ -2,8 +2,9 @@
 import styled from 'styled-components'
 import { popularProducts } from '../data'
 import { useState, useEffect } from 'react';
-
-
+import { useDispatch } from "react-redux";
+import { changeProductDetail } from '../store/modules/DetailSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     padding: 0px 30px;
@@ -21,6 +22,7 @@ const Image = styled.img`
     width: 240px;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
     &:hover {
     transform: scale(1.05);
   }
@@ -29,6 +31,7 @@ const Image = styled.img`
 const Title = styled.div`
     margin-top: 3rem;
     display: flex;
+    cursor: pointer;
     /* justify-content: center; */
 `
 
@@ -60,13 +63,15 @@ const Button = styled.button`
 
 
 export default function Product({ item, cart, setCart }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const text = "Add To Cart"
   const [buttonText, setButtonText] = useState(text);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setButtonText(text);
-    }, 500);
+    }, 800);
     return () => clearTimeout(timer);
   }, [buttonText])
 
@@ -92,10 +97,16 @@ export default function Product({ item, cart, setCart }) {
 
   }
 
+  const handleImgClick = (itemId) => {
+    const product = popularProducts.filter(item=>item.id===itemId)[0];
+    dispatch(changeProductDetail({detail: product}));
+    navigate("/detail")
+  }
+
   return (
     <Container>
-      <Image src={item.img} />
-      <Title>{item.name}</Title>
+      <Image src={item.img} onClick={()=>{handleImgClick(item.id)}}/>
+      <Title onClick={()=>{handleImgClick(item.id)}}>{item.name}</Title>
       <Price>{item.price}</Price>
       <Button onClick={() => handleClick(item.id)}>{buttonText}</Button>
     </Container>
